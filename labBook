@@ -26,5 +26,5 @@ https://console.cloud.google.com/storage/browser/name-of-the-bucket
 Which should be, for the bucket created:
 https://console.cloud.google.com/storage/browser/biobureau-upload
 
-A login page should be prompted and after logging in the user is forwarded to the bucket's page at Google Cloud Console. Now uploading files
-is a simple matter of clicking on the upload button. 
+A login page should be prompted and after logging in the user is forwarded to the bucket's page at Google Cloud Console. Now uploading 
+files is a simple matter of clicking on the upload button. 
