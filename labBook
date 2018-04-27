@@ -1,0 +1,30 @@
+#month/day/year
+
+#04/27/2018
+#Getting the sequencing files
+The innovation center that sequenced the genomes (POLO D’INNOVAZIONE DI GENOMICA, GENETICA E BIOLOGIA) sent the data in a HD. However, the 
+HD was held at the Customs and the taxes we would have to pay to retrieve it were too high. So we suggested Laura Chiti (innovation 
+center's representative) to share the files via Google Cloud. 
+
+The fisrt attempt was to create a virtual machine to function as a FTP server. Then, Laura could upload the sequencing files after 
+connecting to the FTP link and registering the user credentials. However, we could not establish the server since external access was
+repeatdly blocked by the virtual machine's firewall.
+
+Another way of sharing files through GCloud is by using the Google Cloud Storage service. The idea is to create a bucket and share it with
+other users, so that they can upload/download files to it. The bucket was created (named "biobureau-upload") and shared doing the following
+steps (assuming you have Goodle Cloud SDK installed in your machine):  
+
+	1) Create a bucket where the files will be stored
+		- gsutil mb gs://biobureau-upload
+	2) Give permissions for another user to read/write from/to the bucket
+		- gsutil acl ch -u googleaccount@gmail.com:W gs://biobureau-upload
+		Important: the user to whom the bucket is being shared need to be a Google Account
+
+After these two steps, the user invited to collaborate in the bucket should be able to access through the link:
+https://console.cloud.google.com/storage/browser/name-of-the-bucket
+
+Which should be, for the bucket created:
+https://console.cloud.google.com/storage/browser/biobureau-upload
+
+A login page should be prompted and after logging in the user is forwarded to the bucket's page at Google Cloud Console. Now uploading files
+is a simple matter of clicking on the upload button. 
