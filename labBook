@@ -46,7 +46,13 @@ or reverse (R2) reads.
 Before proceeding to the following steps, the files that represented the same sample and set of reads (but that came from different lanes) 
 should be merged. One could do this using the "cat" command on a Unix system:
 
-cat LF6-A_GTGAAA_L001_R1_001.fastq.gz LF6-A_GTGAAA_L002_R1_001.fastq.gz > LF6-A_GTGAAA_R1_001.fastq.gz
+$ cat LF6-A_GTGAAA_L001_R1_001.fastq.gz LF6-A_GTGAAA_L002_R1_001.fastq.gz > LF6-A_GTGAAA_R1_001.fastq.gz
 
 As in the above example, the cat command generated a unique file that represented the set of forward reads of the male genome, previously 
-divided into two different files. On a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM, this process took 9h43min.
+divided into two different files. On a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM, this process took 9h43min. 
+Interestingly, When the cat command was ran for the files representing the reverse reads (R2), the process took only 4h13min:
+
+$ cat LF6-A_GTGAAA_L001_R2_001.fastq.gz LF6-A_GTGAAA_L002_R2_001.fastq.gz > LF6-A_GTGAAA_R2_001.fastq.gz
+
+Since the R2 files were actually 1 GB bigger than the R1 and the machine used for running the command was the same, it remains a mistery 
+why the second round of merging ran so much faster. 
