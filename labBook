@@ -29,6 +29,8 @@ https://console.cloud.google.com/storage/browser/biobureau-upload
 A login page should be prompted and after logging in the user is forwarded to the bucket's page at Google Cloud Console. Now uploading 
 files is a simple matter of clicking on the upload button. 
 
+----------------------------------------------------------------------------------------------------------------------------------------
+
 #05/15/2018
 #Merging files from different lanes
 For each sample, it was done a paired-end sequencing, so that by the end of the process there was an R1 an R2 file for each condition. As 
@@ -56,3 +58,25 @@ $ cat LF6-A_GTGAAA_L001_R2_001.fastq.gz LF6-A_GTGAAA_L002_R2_001.fastq.gz > LF6-
 
 Since the R2 files were actually 1 GB bigger than the R1 and the machine used for running the command was the same, it remains a mistery 
 why the second round of merging ran so much faster. 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+#05/16/2018
+#Running FASTQC
+The software FASTQC was used to assess the quality of the sequencing raw data. A total of 4 FASTQC runs were done, each of them taking
+2-3 hours (MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM). The output of each run was an html file that contained
+a graphical representation of all parameters analyzed. Those files can be found under the folder "FASTQC/sequencing_raw_data". 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+#05/17/2018
+#Output analysis 
+The output of FASTQC guides the next step of the workflow, where quality control and adaptor trimming are done (if necessary). It follows
+the analysis of the output for each sample: 
+
+1) LF2-A_ACAGTG_R1_001: it passed the test for all the 11 parameters. However, it raised a warning for "Per sequence GC content" and 
+"Adapter Content". As for the former, its curve had a shape slightly deviated from a (expected) normal distribution. It was also possible
+to detect a second peak, even if very short. This second peak could represent adaptors remaining in the sample, as also indicated by the 
+warning raised by the "Adapter Content" analysis. It is expected that adapter removal in the subsequent cleaning step should correct these
+warnings.   
+
