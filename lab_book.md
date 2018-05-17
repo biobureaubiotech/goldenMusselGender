@@ -1,7 +1,7 @@
-#month/day/year
+#### month/day/year
 
-#04/27/2018
-#Getting the sequencing files
+#### 04/27/2018
+#### Getting the sequencing files
 The innovation center that sequenced the genomes (POLO D’INNOVAZIONE DI GENOMICA, GENETICA E BIOLOGIA) sent the data in a HD. However, the 
 HD was held at the Customs and the taxes we would have to pay to retrieve it were too high. So we suggested Laura Chiti (innovation 
 center's representative) to share the files via Google Cloud. 
@@ -31,8 +31,8 @@ files is a simple matter of clicking on the upload button.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-#05/15/2018
-#Merging files from different lanes
+#### 05/15/2018
+#### Merging files from different lanes
 For each sample, it was done a paired-end sequencing, so that by the end of the process there was an R1 an R2 file for each condition. As 
 each condition was sequenced in two different lanes of the sequencing machine, the whole process generated four files for the female and 
 four files for the male genome:
@@ -61,22 +61,20 @@ why the second round of merging ran so much faster.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-#05/16/2018
-#Running FASTQC
+#### 05/16/2018
+#### Running FASTQC
 The software FASTQC was used to assess the quality of the sequencing raw data. A total of 4 FASTQC runs were done, each of them taking
 2-3 hours (MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM). The output of each run was an html file that contained
 a graphical representation of all parameters analyzed. Those files can be found under the folder "FASTQC/sequencing_raw_data". 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-#05/17/2018
-#Output analysis 
-The output of FASTQC guides the next step of the workflow, where quality control and adaptor trimming are done (if necessary). It follows
-the analysis of the output for each sample: 
+#### 05/17/2018
+#### Output analysis 
+The output of FASTQC guides the next step of the workflow, where quality control and adaptor trimming are done (if necessary). It follows the analysis of the output for each sample: 
 
-1) LF2-A_ACAGTG_R1_001: it passed the test for all the 11 parameters. However, it raised a warning for "Per sequence GC content" and 
-"Adapter Content". As for the former, its curve had a shape slightly deviated from a (expected) normal distribution. It was also possible
-to detect a second peak, even if very short. This second peak could represent adaptors remaining in the sample, as also indicated by the 
-warning raised by the "Adapter Content" analysis. It is expected that adapter removal in the subsequent cleaning step should correct these
-warnings.   
+1) LF2-A_ACAGTG_R1_001
+
+   It passed the test for all the 11 parameters. However, it raised a warning for "Per sequence GC content" and 
+"Adapter Content". As for the former, its curve had a shape slightly deviated from a (expected) normal distribution. It was also possible to detect a second peak, even if very short. This second peak could represent adaptors remaining in the sample, as also indicated by the warning raised by the "Adapter Content" analysis. It is expected that adapter removal in the subsequent cleaning step should correct these warnings.  
 
