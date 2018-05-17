@@ -33,14 +33,12 @@ files is a simple matter of clicking on the upload button.
 
 #### 05/15/2018
 #### Merging files from different lanes
-For each sample, it was done a paired-end sequencing, so that by the end of the process there was an R1 an R2 file for each condition. As 
-each condition was sequenced in two different lanes of the sequencing machine, the whole process generated four files for the female and 
-four files for the male genome:
+For each sample, it was done a paired-end sequencing, so that by the end of the process there was an R1 an R2 file for each condition. As each condition was sequenced in two different lanes of the sequencing machine, the whole process generated four files for the female and four files for the male genome:
 
--rw-r--r--  1 root   staff    19G May  8 04:21 LF6-A_GTGAAA_L001_R1_001.fastq.gz
--rw-r--r--  1 root   staff    20G May  8 12:12 LF6-A_GTGAAA_L001_R2_001.fastq.gz
--rw-r--r--  1 root   staff    19G May  9 03:40 LF6-A_GTGAAA_L002_R1_001.fastq.gz
--rw-r--r--  1 root   staff    20G May  9 17:25 LF6-A_GTGAAA_L002_R2_001.fastq.gz
+   -rw-r--r--  1 root   staff    19G May  8 04:21 LF6-A_GTGAAA_L001_R1_001.fastq.gz  
+   -rw-r--r--  1 root   staff    20G May  8 12:12 LF6-A_GTGAAA_L001_R2_001.fastq.gz  
+   -rw-r--r--  1 root   staff    19G May  9 03:40 LF6-A_GTGAAA_L002_R1_001.fastq.gz  
+   -rw-r--r--  1 root   staff    20G May  9 17:25 LF6-A_GTGAAA_L002_R2_001.fastq.gz  
 
 Where the suffix L00X indicates the lane where the sequencing was done, and the suffix RX indicates if the data represents the forward (R1)
 or reverse (R2) reads. 
