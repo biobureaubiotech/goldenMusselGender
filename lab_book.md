@@ -83,7 +83,7 @@ The output of FASTQC guides the next step of the workflow, where quality control
 
 2) LF2-A_ACAGTG_R2_001
 
-   Differently from LF2-A_ACAGTG_R1_001, LF2-A_ACAGTG_R2_001 showed a high proportion of bad quality nucleotides at the end of the sequence (from nucleotide 225 on), failing the "Per base sequence quality" parameter. This issue was likely caused by a problem at the tile 1115, that according to the "Per tile sequence quality" analysis, had a poor performance at the final nucleotides. This problem can be fixed by trimming of the bad quality region, in this case the last 5 nucleotides. As well as A_ACAGTG_R1_001, A_ACAGTG_R2_001 showed a GC peak slightly abnormal and a very subtle second peak. Again, this should be fixed by removal of adapters.     
+   Differently from LF2-A_ACAGTG_R1_001, LF2-A_ACAGTG_R2_001 showed a high proportion of bad quality nucleotides at the end of the sequence (from nucleotide 225 on), failing the "Per base sequence quality" parameter. This issue was likely caused by a problem at the tile 1115, that according to the "Per tile sequence quality" analysis, had a poor performance at the final nucleotides. This problem can be fixed by trimming of the bad quality region, in this case the last 25 nucleotides. As well as A_ACAGTG_R1_001, A_ACAGTG_R2_001 showed a GC peak slightly abnormal and a very subtle second peak. Again, this should be fixed by removal of adapters.     
    
 3) LF6-A_GTGAAA_R1_001
 
