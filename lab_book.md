@@ -93,3 +93,26 @@ The output of FASTQC guides the next step of the workflow, where quality control
 
    The same pattern as LF2-A_ACAGTG_R2_001, failing at the "Per base sequence quality" test. However, the degeneration of quality occurred later on the sequenced: from the nucleotide 230 on. Then a trimming from this region on should fix the issue. As in all other samples, the GC curve raised a warning, probably due to the presence of adapters. Then trimming and adapter removal should be done for this sample.   
    
+----------------------------------------------------------------------------------------------------------------------------------------
+
+#### 05/26/2018
+#### Trimming and quality control (Trimmomatic)
+
+The software Trimmomatic was used to clip adapters out and to remove bad quality reads. The program was ran in the paired end mode, giving as input the pair of R1/R2 sequencing files. Then, a total of 2 runs were done: one for the male (LF-6) and one for te female (LF-2) genomes. Each run generated 4 outputs (.fastq files): 
+
+i) a file representing forward reads (R1) that still had a pair after quality control; 
+
+ii) a file representing reverse reads (R2) that still had a pair after quality control; 
+
+iii) a file representing forward reads that had no pair after quality control and 
+
+iv) a file representing reverse reads that had no pair after quality control.
+
+The command used to run the quality control of the female genome was:
+
+$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF2-A_ACAGTG_R1_001.fastq.gz LF2-A_ACAGTG_R2_001.fastq.gz output_paired_LF2-A_ACAGTG_R1_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R1_001.fastq.gz output_paired_LF2-A_ACAGTG_R2_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:225
+
+It used the TruSeq3-PE.fa adapters library to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. 
+
+ 
+
