@@ -98,21 +98,39 @@ The output of FASTQC guides the next step of the workflow, where quality control
 #### 05/26/2018
 #### Trimming and quality control (Trimmomatic)
 
-The software Trimmomatic was used to clip adapters out and to remove bad quality reads. The program was ran in the paired end mode, giving as input the pair of R1/R2 sequencing files. Then, a total of 2 runs were done: one for the male (LF-6) and one for te female (LF-2) genomes. Each run generated 4 outputs (.fastq files): 
+The software Trimmomatic was used to clip adapters out and to remove bad quality reads. The program was ran in the paired end mode, giving as input the pair of R1/R2 sequencing files. Then, a total of 2 runs were done: one for the male (LF-6) and one for te female (LF-2) genomes. Each run generated 4 output files (fastq): 
 
 i) a file representing forward reads (R1) that still had a pair after quality control; 
 
 ii) a file representing reverse reads (R2) that still had a pair after quality control; 
 
-iii) a file representing forward reads that had no pair after quality control and 
+iii) a file representing forward reads that had no pair after quality control (their R2 pair was removed) and 
 
 iv) a file representing reverse reads that had no pair after quality control.
+
+#### Trimmomatic on the female genome
 
 The command used to run the quality control of the female genome was:
 
 $ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF2-A_ACAGTG_R1_001.fastq.gz LF2-A_ACAGTG_R2_001.fastq.gz output_paired_LF2-A_ACAGTG_R1_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R1_001.fastq.gz output_paired_LF2-A_ACAGTG_R2_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:225
 
-It used the TruSeq3-PE.fa adapters library to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. 
+In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. 
 
- 
+### FASTQC analysis of quality controled sample
+
+Again, the software FASTQC was used to assess the quality of our sequencing files, now the ones that went through adapters removal and quality control pipeline. As expected, the Trimmomatic run removed all the adapters and low quality regions from the reads. The only parameters that remained with a warning after Trimmomatic were: 
+
+i) Per tile sequence quality:
+
+   The warning was only raised for the R2 files, indicating a problem at the tile 1115. However, this problem didn't seem to compromise the overall quality of the sequencing. 
+   
+ii) Per sequence GC content: 
+
+   The warning was present in all files indicating that a kind of bias may have happened at the library preparation. The second peak, that could indicate contamination of sample, was eliminated in all paired files, but remained in the unpaired ones. 
+   
+iii) Sequence length distribution:
+
+   This warning was raised due to the CROP command, so it is only an artefact and it shouldn't concern us. 
+
+All the html files can be found at 
 
