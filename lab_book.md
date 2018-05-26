@@ -132,5 +132,5 @@ iii) Sequence length distribution:
 
    This warning was raised due to the CROP command, so it is only an artefact and it shouldn't concern us. 
 
-All the html files can be found at 
+All the html files containing the FASTQC analysis of the quality controled data can be found at the folder "FASTQC/after_trimmomatic"
 
