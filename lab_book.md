@@ -120,15 +120,15 @@ In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove
 
 Again, the software FASTQC was used to assess the quality of our sequencing files, now the ones that went through adapters removal and quality control pipeline. As expected, the Trimmomatic run removed all the adapters and low quality regions from the reads. The only parameters that remained with a warning after Trimmomatic were: 
 
-i) Per tile sequence quality:
+1) Per tile sequence quality:
 
    The warning was only raised for the R2 files, indicating a problem at the tile 1115. However, this problem didn't seem to compromise the overall quality of the sequencing. 
    
-ii) Per sequence GC content: 
+2) Per sequence GC content: 
 
    The warning was present in all files indicating that a kind of bias may have happened at the library preparation. The second peak, that could indicate contamination of sample, was eliminated in all paired files, but remained in the unpaired ones. 
    
-iii) Sequence length distribution:
+3) Sequence length distribution:
 
    This warning was raised due to the CROP command, so it is only an artefact and it shouldn't concern us. 
 
