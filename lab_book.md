@@ -116,7 +116,7 @@ $ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phr
 
 In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. 
 
-### FASTQC analysis of quality controled sample
+#### FASTQC analysis of quality controled sample
 
 Again, the software FASTQC was used to assess the quality of our sequencing files, now the ones that went through adapters removal and quality control pipeline. As expected, the Trimmomatic run removed all the adapters and low quality regions from the reads. The only parameters that remained with a warning after Trimmomatic were: 
 
