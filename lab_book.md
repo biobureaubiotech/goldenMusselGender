@@ -114,9 +114,15 @@ The command used to run the quality control of the female genome was:
 
 $ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF2-A_ACAGTG_R1_001.fastq.gz LF2-A_ACAGTG_R2_001.fastq.gz output_paired_LF2-A_ACAGTG_R1_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R1_001.fastq.gz output_paired_LF2-A_ACAGTG_R2_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:225
 
-In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. 
+In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Trimmomatic's output shows the percentage of reads remaining after processing:
 
-#### FASTQC analysis of quality controled sample
+Input Read Pairs: 223981456 
+Both Surviving: 193554993 (86.42%) 
+Forward Only Surviving: 30125366 (13.45%) 
+Reverse Only Surviving: 273794 (0.12%) 
+Dropped: 27303 (0.01%)
+
+#### FASTQC analysis of quality controled female genome
 
 Again, the software FASTQC was used to assess the quality of our sequencing files, now the ones that went through adapters removal and quality control pipeline. As expected, the Trimmomatic run removed all the adapters and low quality regions from the reads. The only parameters that remained with a warning after Trimmomatic were: 
 
@@ -134,3 +140,21 @@ Again, the software FASTQC was used to assess the quality of our sequencing file
 
 All the html files containing the FASTQC analysis of the quality controled data can be found at the folder "FASTQC/after_trimmomatic"
 
+----------------------------------------------------------------------------------------------------------------------------------------
+
+#### 05/30/2018
+#### Trimmomatic on the male genome
+
+The command used to run the quality control of the male genome was:
+
+$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF6-A_GTGAAA_R1_001.fastq.gz LF6-A_GTGAAA_R2_001.fastq.gz output_paired_LF6-A_GTGAAA_R1_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R1_001.fastq.gz output_paired_LF6-A_GTGAAA_R2_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:230
+
+The same parameters were used in as in the female genome processing, only difference being the CROP flag, that cut off the last 20 nucleotides in the male genome (CROP:230) and 25 in the female genome (CROP:225). The job took approximately 14h to finish in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Find the summary of the processing step below:
+
+Input Read Pairs: 191753950 
+Both Surviving: 167036203 (87.11%) 
+Forward Only Surviving: 24441370 (12.75%) 
+Reverse Only Surviving: 247096 (0.13%) 
+Dropped: 29281 (0.02%)
+
+#### FASTQC analysis of quality controled male genome
