@@ -157,4 +157,9 @@ Forward Only Surviving: 24441370 (12.75%)
 Reverse Only Surviving: 247096 (0.13%) 
 Dropped: 29281 (0.02%)
 
-#### FASTQC analysis of quality controled male genome
+----------------------------------------------------------------------------------------------------------------------------------------
+
+#### 05/31/2018
+#### FASTQC analysis of quality controled male genome 
+
+The FASTQC analysis of LF6 data after processing showed that Trimmomatic was effective in selecting good quality data (see all 4 files at folder "FASTQC/after_trimmomatic". The two files that had paired data (output_paired_LF6-A_GTGAAA_R1_001 e output_paired_LF6-A_GTGAAA_R2_001) have passed the quality test for all the parameters analysed, only raising a warning for the "Per sequence GC content" and "Sequence length distribution". As already explained at "FASTQC analysis of quality controled female genome", those warnings should not be a concern. The unpaired R1 file (output_unpaired_LF6-A_GTGAAA_R1_001) also showed really good quality, passing in all tests, except for the "Sequence length distribution". The warning was raised due to the presence of reads of different lengths. However, as explained in the FASTQC Manual, this type of warning can be ignored, since it is entirely normal for some sequencing platforms to have reads of different lengths. The unpaired R2 file (output_unpaired_LF6-A_GTGAAA_R1_001) was the only one that failed the FASTQC test for a parameter: it failed the "Per sequence GC content". This failure can be explained by a second peak of 60% GC content that pretty much merged with the main 34% peak expected for a *Limnoperna fortunei* genome. A further step of removal of sequences of 60% GC content could solve this issue.      
