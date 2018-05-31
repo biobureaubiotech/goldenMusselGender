@@ -100,13 +100,13 @@ The output of FASTQC guides the next step of the workflow, where quality control
 
 The software Trimmomatic was used to clip adapters out and to remove bad quality reads. The program was ran in the paired end mode, giving as input the pair of R1/R2 sequencing files. Then, a total of 2 runs were done: one for the male (LF-6) and one for te female (LF-2) genomes. Each run generated 4 output files (fastq): 
 
-i) a file representing forward reads (R1) that still had a pair after quality control; 
+	1) a file representing forward reads (R1) that still had a pair after quality control; 
 
-ii) a file representing reverse reads (R2) that still had a pair after quality control; 
+	2) a file representing reverse reads (R2) that still had a pair after quality control; 
 
-iii) a file representing forward reads that had no pair after quality control (their R2 pair was removed) and 
+	3) a file representing forward reads that had no pair after quality control (their R2 pair was removed) and 
 
-iv) a file representing reverse reads that had no pair after quality control.
+	4) a file representing reverse reads that had no pair after quality control.
 
 #### Trimmomatic on the female genome
 
