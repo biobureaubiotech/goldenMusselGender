@@ -35,10 +35,10 @@ files is a simple matter of clicking on the upload button.
 #### Merging files from different lanes
 For each sample, it was done a paired-end sequencing, so that by the end of the process there was an R1 an R2 file for each condition. As each condition was sequenced in two different lanes of the sequencing machine, the whole process generated four files for the female and four files for the male genome:
 
-   -rw-r--r--  1 root   staff    19G May  8 04:21 LF6-A_GTGAAA_L001_R1_001.fastq.gz  
-   -rw-r--r--  1 root   staff    20G May  8 12:12 LF6-A_GTGAAA_L001_R2_001.fastq.gz  
-   -rw-r--r--  1 root   staff    19G May  9 03:40 LF6-A_GTGAAA_L002_R1_001.fastq.gz  
-   -rw-r--r--  1 root   staff    20G May  9 17:25 LF6-A_GTGAAA_L002_R2_001.fastq.gz  
+	-rw-r--r--  1 root   staff    19G May  8 04:21 LF6-A_GTGAAA_L001_R1_001.fastq.gz  
+	-rw-r--r--  1 root   staff    20G May  8 12:12 LF6-A_GTGAAA_L001_R2_001.fastq.gz  
+	-rw-r--r--  1 root   staff    19G May  9 03:40 LF6-A_GTGAAA_L002_R1_001.fastq.gz  
+	-rw-r--r--  1 root   staff    20G May  9 17:25 LF6-A_GTGAAA_L002_R2_001.fastq.gz  
 
 Where the suffix L00X indicates the lane where the sequencing was done, and the suffix RX indicates if the data represents the forward (R1)
 or reverse (R2) reads. 
@@ -112,15 +112,15 @@ The software Trimmomatic was used to clip adapters out and to remove bad quality
 
 The command used to run the quality control of the female genome was:
 
-$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF2-A_ACAGTG_R1_001.fastq.gz LF2-A_ACAGTG_R2_001.fastq.gz output_paired_LF2-A_ACAGTG_R1_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R1_001.fastq.gz output_paired_LF2-A_ACAGTG_R2_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:225
+	$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF2-A_ACAGTG_R1_001.fastq.gz LF2-A_ACAGTG_R2_001.fastq.gz output_paired_LF2-A_ACAGTG_R1_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R1_001.fastq.gz output_paired_LF2-A_ACAGTG_R2_001.fastq.gz output_unpaired_LF2-A_ACAGTG_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:225
 
 In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Trimmomatic's output shows the percentage of reads remaining after processing:
 
-Input Read Pairs: 223981456 
-Both Surviving: 193554993 (86.42%) 
-Forward Only Surviving: 30125366 (13.45%) 
-Reverse Only Surviving: 273794 (0.12%) 
-Dropped: 27303 (0.01%)
+	Input Read Pairs: 223981456 
+	Both Surviving: 193554993 (86.42%) 
+	Forward Only Surviving: 30125366 (13.45%) 
+	Reverse Only Surviving: 273794 (0.12%) 
+	Dropped: 27303 (0.01%)
 
 #### FASTQC analysis of quality controled female genome
 
@@ -147,7 +147,7 @@ All the html files containing the FASTQC analysis of the quality controled data 
 
 The command used to run the quality control of the male genome was:
 
-$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF6-A_GTGAAA_R1_001.fastq.gz LF6-A_GTGAAA_R2_001.fastq.gz output_paired_LF6-A_GTGAAA_R1_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R1_001.fastq.gz output_paired_LF6-A_GTGAAA_R2_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:230
+	$ java -jar /Users/bioma/Downloads/Trimmomatic-0.38/trimmomatic-0.38.jar PE -phred33 LF6-A_GTGAAA_R1_001.fastq.gz LF6-A_GTGAAA_R2_001.fastq.gz output_paired_LF6-A_GTGAAA_R1_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R1_001.fastq.gz output_paired_LF6-A_GTGAAA_R2_001.fastq.gz output_unpaired_LF6-A_GTGAAA_R2_001.fastq.gz ILLUMINACLIP:/Users/bioma/Downloads/Trimmomatic-0.38/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 CROP:230
 
 The same parameters were used in as in the female genome processing, only difference being the CROP flag, that cut off the last 20 nucleotides in the male genome (CROP:230) and 25 in the female genome (CROP:225). The job took approximately 14h to finish in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Find the summary of the processing step below:
 
