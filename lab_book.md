@@ -116,11 +116,11 @@ The command used to run the quality control of the female genome was:
 
 In this run, the TruSeq3-PE.fa adapters library was used to recognize and remove adapters sequences from the sequencing raw data. It also cut the last 25 nucleotides of all reads (CROP:225), as the previous FASTQC analysis had shown they had very low quality. The job took approximately 16 hours to run in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Trimmomatic's output shows the percentage of reads remaining after processing:
 
-Input Read Pairs: 223981456 
-Both Surviving: 193554993 (86.42%) 
-Forward Only Surviving: 30125366 (13.45%) 
-Reverse Only Surviving: 273794 (0.12%) 
-Dropped: 27303 (0.01%)
+Input Read Pairs: 223981456  
+Both Surviving: 193554993 (86.42%)   
+Forward Only Surviving: 30125366 (13.45%)   
+Reverse Only Surviving: 273794 (0.12%)   
+Dropped: 27303 (0.01%)  
 
 #### FASTQC analysis of quality controled female genome
 
@@ -151,17 +151,16 @@ The command used to run the quality control of the male genome was:
 
 The same parameters were used in as in the female genome processing, only difference being the CROP flag, that cut off the last 20 nucleotides in the male genome (CROP:230) and 25 in the female genome (CROP:225). The job took approximately 14h to finish in a MacOSX system with a 2.66 GHz Intel Core 2 Duo processor and 8GB RAM. Find the summary of the processing step below:
 
-Input Read Pairs: 191753950 
-Both Surviving: 167036203 (87.11%) 
-Forward Only Surviving: 24441370 (12.75%) 
-Reverse Only Surviving: 247096 (0.13%) 
-Dropped: 29281 (0.02%)
+Input Read Pairs: 191753950   
+Both Surviving: 167036203 (87.11%)   
+Forward Only Surviving: 24441370 (12.75%)   
+Reverse Only Surviving: 247096 (0.13%)   
+Dropped: 29281 (0.02%)  
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 #### 05/31/2018
 #### FASTQC analysis of quality controled male genome 
 
-The FASTQC analysis of LF6 data after processing showed that Trimmomatic was effective in selecting good quality data (see all 4 files at folder "FASTQC/after_trimmomatic". The two files that had paired data ([output_paired_LF6-A_GTGAAA_R1_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_paired_LF6-A_GTGAAA_R1_001_fastqc.html) e [output_paired_LF6-A_GTGAAA_R2_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_paired_LF6-A_GTGAAA_R2_001_fastqc.html)) have passed the quality test for all the parameters analysed, only raising a warning for the "Per sequence GC content" and "Sequence length distribution". As already explained at "FASTQC analysis of quality controled female genome", those warnings should not be a concern. 
-
+The FASTQC analysis of LF6 data after processing showed that Trimmomatic was effective in selecting good quality data (see all 4 files at folder "FASTQC/after_trimmomatic". The two files that had paired data ([output_paired_LF6-A_GTGAAA_R1_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_paired_LF6-A_GTGAAA_R1_001_fastqc.html) e [output_paired_LF6-A_GTGAAA_R2_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_paired_LF6-A_GTGAAA_R2_001_fastqc.html)) have passed the quality test for all the parameters analysed, only raising a warning for the "Per sequence GC content" and "Sequence length distribution". As already explained at "FASTQC analysis of quality controled female genome", those warnings should not be a concern.   
 The unpaired R1 file ([output_unpaired_LF6-A_GTGAAA_R1_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_unpaired_LF6-A_GTGAAA_R1_001_fastqc.html)) also showed really good quality, passing in all tests, except for the "Sequence length distribution". The warning was raised due to the presence of reads of different lengths. However, as explained in the FASTQC Manual, this type of warning can be ignored, since it is entirely normal for some sequencing platforms to have reads of different lengths. The unpaired R2 file ([output_unpaired_LF6-A_GTGAAA_R1_001](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/FASTQC/after_trimmomatic/output_unpaired_LF6-A_GTGAAA_R2_001_fastqc.html)) was the only one that failed the FASTQC test for a parameter: it failed the "Per sequence GC content". This failure can be explained by a second peak of 60% GC content that pretty much merged with the main 34% peak expected for a *Limnoperna fortunei* genome. A further step of removal of sequences of 60% GC content could solve this issue.      
