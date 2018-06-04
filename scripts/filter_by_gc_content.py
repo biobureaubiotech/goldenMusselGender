@@ -1,7 +1,7 @@
 import argparse
 
 """Usage:
-python filter_by_gc_content.py -input file_to_be_processed -maxgc maximum_GC_content_allowed(integer_value) -output processed_file"""
+python filter_by_gc_content.py -input fastq_file_to_be_processed -maxgc maximum_GC_content_allowed(integer_value) -output fastq_processed_file"""
 
 def filter_by_gc_content(file, max_gc, newfile):
     next_line_is_nucleotide = False
