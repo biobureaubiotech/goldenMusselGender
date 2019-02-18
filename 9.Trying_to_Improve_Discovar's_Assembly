@@ -1,0 +1,36 @@
+#### 01/28/2019  
+After talking to Marcela about the results we got from the Discovar assembly, she suggested me to give a trial to the software [Cross_genome](https://www.sanger.ac.uk/science/tools/crossgenome), which uses a reference genome from a related species to scaffold. Can we get a better assembly after passing our contigs obtained from Discovar assembly to Cross genome?  
+
+In order to try this hypothesis, we have installed the Cross_genome program at Bioma's computer and executed the following command:  
+```console  
+bioma@bioma-XPS-8300:~/cross_genome_folder$ /home/bioma/cross_genome_folder/cross_genome -gap 20000 -nodes 20 -score 100 ref_fasta target_fasta merged.fasta
+```  
+
+PS: typing the whole path of the cross_genome executable is required to run it without any errors.  
+
+#### 01/30/2019  
+##### Running Cross Genome  
+Running cross_genome on bioma's pc and right after it finishes run the 1.9 version of samtools to try to get untruncated sort files. (screen session: 19843.cross_genome_lf6). At the same time keeping track of memory usage running the command at the screen session 1214.mem-usage.  
+
+#### 01/31/2019  
+After 3 hours running *Cross Genome*, the program has failed with a segmentation fault. A possible reason for the error is lack of memory at the bioma's pc (which has 16GB of RAM). In order to test this hypothesis, we decided to run the *Cross Genome* with the same data at a VM from GCloud (name: lf6-cross-genome, project: Limnoperna fortunei; instance type: n1-standard-8 (8 vCPUs, 30 GB RAM)) using the command:  
+
+```console  
+joao_nunes@lf6-cross-genome:~/cross_genome$ { time /home/joao_nunes/cross_genome/cross_genome -gap 20000 -nodes 8 -score 100 ref_fasta target_fasta merged.fasta ; sudo poweroff ; } &> log_cross_genome_lf6_testX.txt  
+``` 
+The *time* command will record the time taken to run *Cross Genome*, while the poweroff command will turn off the VM instance right after execution.  
+However, we got the same segmentation fault error. 
+
+#### 01/31/2019  
+##### Running *Cross Genome* at high RAM environment  
+In order to test the hypothesis that the segmentation fault was caused by lack of RAM, we tested *Cross Genome* with the same data on a even more powerful machine (name: lf6-cross-genome, project: Limnoperna fortunei; instance type: n1-highmem-16 (16 vCPUs, 104 GB RAM)). 
+
+#### 02/04/2019  
+##### Running *Cross Genome* at even higher RAM environment  
+Even after using a higher configuration VM instance (n1-highmem-32 (32 vCPUs, 208 GB de memória)), we still got a Segmentation fault error. Since the RAM usage has shown a peak at less than 8 GB (figure below), we ruled out the hypothesis that the error was being caused by a lack of physical memory. Another possible reason for the error is an issue with the input files. I contacted Marcela to check if she already has been successful in running Cross Genome and if Yes, if she could share with me the input files.  
+
+![RAM usage for running Cross Genome](https://github.com/biobureaubiotech/goldenMusselGender/blob/master/images/RAM-usage_kB-per-minute.svg)  
+
+### To Do  
+Search about [Align Graph](https://academic.oup.com/bioinformatics/article/30/12/i319/391426), which seems to be a good alternative to Cross Genome.  
+  
