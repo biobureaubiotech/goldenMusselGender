@@ -1,0 +1,24 @@
+The execution of HLischer's pipeline includes 7 steps:  
+
+<p align="left">
+  <img src="https://github.com/biobureaubiotech/goldenMusselGender/blob/master/images/hlischer-pipeline.jpg" border="5">
+</p>  
+
+1. **Quality trimming**:   
+    in this step, the raw data is quality filtered (using FastQC) and adapters are clipped off (using Trimmomatic).  
+2. **Alignment against reference**:  
+    the trimmed reads are then aligned against the reference genome, using Bowtie2. Then, regions where the reads got mapped are used to define superblocks. 
+3. **De novo assembly within superblocks**:  
+    a de novo assembler (in our case, SOAPdeNovo) is used to assemble the reads within each supercontig, as well as the reads that haven't mapped to the reference genome. 
+4. **Generate supercontigs**:  
+    the contigs generated in the previous step are then aligned against the reference genome to remove redundancy and generate supercontigs (using AMOScmp). 
+5. **Recovering lost contigs**:  
+    the AMOScmp doesn't return the contigs that are not aligned to the reference, what would cause loss of the most divergent contigs. To fix this, the reads trimmed in the first step are aligned to the supercontigs (Bowtie2), and the unmapped reads are de novo assembled (SOAPdenovo). The contigs generated are then added to the set of supercontigs. 
+6. **Error correction of supercontigs**:  
+    all contigs are then error corrected with back mapped reads. Only good quality mapping is kept. Supercontigs regions that are not mapped are clipped off.  
+7. **Scaffolding**:  
+    the reads trimmed in the first step are used for gap closing and scaffolding using SOAPdenovo.    
+
+
+
+
